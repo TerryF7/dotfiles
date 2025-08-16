@@ -1,0 +1,7 @@
+Host *
+  ServerAliveInterval 120
+  UseKeychain yes
+  AddKeysToAgent yes
+
+IgnoreUnknown UseKeychain
+  UseKeychain yes

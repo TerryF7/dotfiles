@@ -1,0 +1,9 @@
+source ~/.vimrc
+
+" Plugins
+set easymotion
+set NERDTree
+set surround
+set highlightedyank
+set which-key
+set notimeout

@@ -1,0 +1,80 @@
+" Basic
+set nocompatible
+set encoding=utf-8
+set number
+set relativenumber
+set mouse=a
+
+syntax on
+filetype on
+filetype indent on
+filetype plugin on
+
+" Display
+set t_Co=256
+set showmode
+set showcmd
+set ruler
+set laststatus=2
+set scrolloff=5
+set wrap
+set linebreak
+set wrapmargin=2
+
+" Tab and Indent
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set smarttab
+set expandtab
+set autoindent
+set smartindent
+
+" Search
+set showmatch
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" Edit
+set spell spelllang=en_us
+set autoread
+set clipboard+=unnamed
+set listchars=tab:»■,trail:■
+set list
+set wildmenu
+set wildmode=longest:list,full
+
+" Key Mapping
+let mapleader = ' '
+
+" Global
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Normal Mode
+nnoremap j gj
+nnoremap k gk
+nnoremap H ^
+nnoremap L $
+nnoremap <C-n> :nohl<CR>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>wq :wq<CR>
+nnoremap <Leader>sp :sp<CR>
+nnoremap <Leader>vs :vs<CR>
+
+" Insert Mode
+
+" Visual Mode
+vnoremap j gj
+vnoremap k gk
+vnoremap H ^
+vnoremap L $
+
+" Operator pending Mode
+onoremap H ^
+onoremap L $

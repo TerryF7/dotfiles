@@ -6,12 +6,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 ###----Path----###
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 export ZSH=$HOME/.config/zsh
 export LANG="en_US.UTF-8"
-export EDITOR='nvim'
+export EDITOR="nvim"
+export VISUAL="code --wait"
 
 if [[ "$(uname)" == "Darwin" ]]; then
   ###----Brew----###

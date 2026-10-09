@@ -1,0 +1,45 @@
+# Reload: Cmd+Shift+Comma.
+
+# Fonts
+# Primary font, followed by Chinese fallback.
+font-family = CaskaydiaCove Nerd Font
+font-family = PingFang SC
+font-size = 16
+# Use the configured size in new windows and tabs.
+window-inherit-font-size = false
+
+# Appearance
+theme = light:Catppuccin Latte,dark:Catppuccin Mocha
+cursor-style = bar
+background-opacity = 0.8
+background-blur = true
+
+# Windows
+macos-titlebar-style = transparent
+macos-window-buttons = hidden
+window-padding-x = 12
+window-padding-y = 8
+# Start fresh after quitting; retain closed terminals for undo.
+window-save-state = never
+undo-timeout = 30s
+
+# Input and clipboard
+# Keep right Option available for macOS character input.
+macos-option-as-alt = left
+copy-on-select = false
+selection-clear-on-copy = true
+clipboard-paste-protection = false
+
+# Shell integration
+# Set up SSH terminfo and preserve TERMINFO through sudo.
+shell-integration-features = ssh-env,ssh-terminfo,sudo
+
+# Quick terminal
+# Global Cmd+Backquote shortcut; requires macOS Accessibility permission.
+keybind = global:cmd+backquote=toggle_quick_terminal
+quick-terminal-position = top
+quick-terminal-size = 50%
+
+# Command notifications
+notify-on-command-finish = unfocused
+notify-on-command-finish-action = bell,notify

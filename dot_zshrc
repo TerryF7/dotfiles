@@ -1,12 +1,6 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
-###----Path----###
+# Paths and environment
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="/Library/TeX/texbin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 export ZSH=$HOME/.config/zsh
 export LANG="en_US.UTF-8"
@@ -14,71 +8,45 @@ export EDITOR="nvim"
 export VISUAL="code --wait"
 
 if [[ "$(uname)" == "Darwin" ]]; then
-  ###----Brew----###
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+  # Homebrew
+  if (( $+commands[brew] )); then
+    eval "$(brew shellenv)"
+  elif [[ -x /opt/homebrew/bin/brew ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [[ -x /usr/local/bin/brew ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
   export HOMEBREW_NO_ENV_HINTS=true
   export HOMEBREW_BUNDLE_NO_LOCK=true
   fpath=($(brew --prefix)/share/zsh/site-functions $fpath)
 fi
 
-###----Zinit's installer----###
-if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
-    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
-    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
-        print -P "%F{33} %F{34}Installation successful.%f%b" || \
-        print -P "%F{160} The clone has failed.%f%b"
+# Zim
+ZIM_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zim"
+ZIM_CONFIG_FILE="$ZSH/zimrc"
+if [[ ! "$ZIM_HOME/init.zsh" -nt "$ZIM_CONFIG_FILE" ]]; then
+  source "$(brew --prefix zimfw)/share/zimfw.zsh" init
 fi
+source "$ZIM_HOME/init.zsh"
 
-source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zdharma-continuum/zinit-annex-as-monitor \
-    zdharma-continuum/zinit-annex-bin-gem-node \
-    zdharma-continuum/zinit-annex-patch-dl \
-    zdharma-continuum/zinit-annex-rust
-
-###----End of Zinit's installer----###
-
-###----Zinit's config----###
-zinit light-mode for \
-    depth"1" \
-  romkatv/powerlevel10k \
-    blockf \
-  zsh-users/zsh-completions \
-  zdharma-continuum/fast-syntax-highlighting \
-  zsh-users/zsh-autosuggestions \
-  ael-code/zsh-colored-man-pages \
-
-zinit snippet OMZL::clipboard.zsh
-zinit snippet OMZL::completion.zsh
-zinit snippet OMZL::history.zsh
-
-###----aliases----###
+# Aliases
 [[ -f $ZSH/aliases.zsh ]] && source $ZSH/aliases.zsh
 
-##----keybindings----###
-bindkey -v
+# Keybindings
+bindkey -e
 
-###----p10k----###
-[[ ! -f $ZSH/p10k.zsh ]] || source $ZSH/p10k.zsh
-
-###----completions----###
-autoload -Uz compinit; compinit
-
-###----zoxide----###
+# zoxide
 if command -v zoxide > /dev/null 2>&1; then
   eval "$(zoxide init zsh)"
 fi
 
-# >>> vscode python
-# version: 0.1.0
-if [ -n "$VSCODE_BASH_ACTIVATE" ] && [ "$TERM_PROGRAM" = "vscode" ]; then
-    eval "$VSCODE_BASH_ACTIVATE" || true
+# fzf
+[[ -f "$ZSH/fzf.zsh" ]] && source "$ZSH/fzf.zsh"
+
+# Ghostty
+if [[ -n "$GHOSTTY_RESOURCES_DIR" && -r "$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-integration" ]]; then
+  source "$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-integration"
 fi
-# <<< vscode python
-zinit cdreplay -q
+
+# Starship
+eval "$(starship init zsh)"

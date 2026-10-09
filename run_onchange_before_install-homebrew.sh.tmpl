@@ -1,0 +1,9 @@
+#!/bin/sh
+set -eu
+printf '%s\n' "[Homebrew] Preparing package installation..."
+{{ template "brew-env.sh" . }}
+
+printf '%s\n' "[Homebrew] Installing and upgrading Brewfile packages..."
+brew bundle install --upgrade --file=- <<'BREWFILE'
+{{ include "Brewfile" }}BREWFILE
+printf '%s\n' "[Homebrew] Packages ready."

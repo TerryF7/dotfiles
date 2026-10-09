@@ -1,0 +1,74 @@
+[[mgr.prepend_keymap]]
+on = ["g", "i"]
+run = "plugin lazygit"
+desc = "Open lazygit"
+
+[[mgr.prepend_keymap]]
+on = "l"
+run = "plugin smart-enter"
+desc = "Enter directory or open file"
+
+[[mgr.prepend_keymap]]
+on = "<Enter>"
+run = "plugin smart-enter"
+desc = "Enter directory or open file"
+
+[[mgr.prepend_keymap]]
+on = ["c", "a", "a"]
+run = "plugin compress"
+desc = "Archive selected files"
+
+[[mgr.prepend_keymap]]
+on = ["c", "a", "p"]
+run = "plugin compress -p"
+desc = "Archive selected files with password"
+
+[[mgr.prepend_keymap]]
+on = ["c", "a", "h"]
+run = "plugin compress -ph"
+desc = "Archive selected files with encrypted header"
+
+[[mgr.prepend_keymap]]
+on = ["c", "a", "l"]
+run = "plugin compress -l"
+desc = "Choose archive compression level"
+
+[[mgr.prepend_keymap]]
+on = ["b", "a"]
+run = "plugin mactag add"
+desc = "Add macOS tag"
+
+[[mgr.prepend_keymap]]
+on = ["b", "r"]
+run = "plugin mactag remove"
+desc = "Remove macOS tag"
+
+[[mgr.prepend_keymap]]
+on = "T"
+run = "plugin toggle-pane max-preview"
+desc = "Maximize or restore preview"
+
+[[mgr.prepend_keymap]]
+on = ["e", "t"]
+run = "plugin eza-preview"
+desc = "Toggle directory tree/list preview"
+
+[[mgr.prepend_keymap]]
+on = ["e", "+"]
+run = "plugin eza-preview inc-level"
+desc = "Increase preview depth"
+
+[[mgr.prepend_keymap]]
+on = ["e", "-"]
+run = "plugin eza-preview dec-level"
+desc = "Decrease preview depth"
+
+[[mgr.prepend_keymap]]
+on = ["e", "h"]
+run = "plugin eza-preview toggle-hidden"
+desc = "Toggle hidden files in preview"
+
+[[mgr.prepend_keymap]]
+on = ["e", "g"]
+run = "plugin eza-preview toggle-git-status"
+desc = "Toggle Git status in preview"

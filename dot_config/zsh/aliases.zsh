@@ -1,3 +1,7 @@
+# directory navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+
 # avoid overwrite
 alias cp='cp -i'
 alias mv='mv -i'
@@ -7,6 +11,9 @@ alias mkdir='mkdir -pv'
 
 # cat
 alias cat='bat'
+
+# chezmoi
+alias cm='chezmoi'
 
 # clear
 alias cls='clear'
@@ -24,10 +31,10 @@ alias lg='lazygit'
 alias ls='eza'
 alias la='eza -a'
 alias ll='eza -lah'
-alias tree='eza --tree'
+alias tree='eza --tree --level=2'
 
 # nvim
 alias v='nvim'
 
-# zellij
-alias zl='zellij'
+# yazi
+alias yz='yazi'

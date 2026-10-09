@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+printf '%s\n' "[Yazi] Preparing plugin installation..."
+{{ template "brew-env.sh" . }}
+
+printf '%s\n' "[Yazi] Restoring plugins and flavors..."
+ya pkg install
+printf '%s\n' "[Yazi] Plugins and flavors ready."

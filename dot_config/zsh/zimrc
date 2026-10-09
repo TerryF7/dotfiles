@@ -1,0 +1,8 @@
+# Oh My Zsh
+zmodule ohmyzsh/ohmyzsh --source lib/clipboard.zsh --source lib/completion.zsh --source lib/history.zsh --cmd 'autoload -Uz compinit; compinit'
+
+# Other plugins
+zmodule zsh-users/zsh-completions --fpath src
+zmodule zsh-users/zsh-autosuggestions
+zmodule ael-code/zsh-colored-man-pages --source colored-man-pages.plugin.zsh
+zmodule zdharma-continuum/fast-syntax-highlighting --source fast-syntax-highlighting.plugin.zsh

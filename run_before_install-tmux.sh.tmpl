@@ -1,0 +1,27 @@
+#!/bin/sh
+set -eu
+printf '%s\n' "[tmux] Preparing Catppuccin theme..."
+{{ template "brew-env.sh" . }}
+
+theme_dir="$HOME/.config/tmux/plugins/catppuccin/tmux"
+
+if [ ! -d "$theme_dir" ]; then
+  printf '%s\n' "[tmux] Installing the latest theme..."
+  mkdir -p "$(dirname "$theme_dir")"
+  git clone --depth 1 https://github.com/catppuccin/tmux.git "$theme_dir"
+elif [ -d "$theme_dir/.git" ]; then
+  if [ -n "$(git -C "$theme_dir" status --porcelain)" ]; then
+    echo "Theme has local changes: $theme_dir" >&2
+    exit 1
+  fi
+  printf '%s\n' "[tmux] Checking remote updates..."
+  default_ref=$(git -C "$theme_dir" ls-remote --symref origin HEAD | awk '$1 == "ref:" { print $2 }')
+  [ -n "$default_ref" ]
+  git -C "$theme_dir" fetch --depth 1 origin "$default_ref"
+  printf '%s\n' "[tmux] Applying the latest theme..."
+  git -C "$theme_dir" checkout --detach FETCH_HEAD
+else
+  echo "Theme directory exists but is not a Git repository: $theme_dir" >&2
+  exit 1
+fi
+printf '%s\n' "[tmux] Theme ready."

@@ -5,3 +5,8 @@ Host *
 
 IgnoreUnknown UseKeychain
   UseKeychain yes
+
+Host ntu-tc2
+  HostName 10.96.189.12
+  User tianyang005
+  Port 22

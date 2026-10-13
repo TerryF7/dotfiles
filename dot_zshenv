@@ -1,0 +1,24 @@
+# Environment
+export XDG_CONFIG_HOME="$HOME/.config"
+export LANG="en_US.UTF-8"
+export EDITOR="nvim"
+export VISUAL="code --wait"
+export HOMEBREW_NO_ENV_HINTS=true
+export HOMEBREW_BUNDLE_NO_LOCK=true
+export HOMEBREW_BUNDLE_FILE="$HOME/.local/share/chezmoi/Brewfile"
+
+# Homebrew; child shells inherit it
+if [[ -z "$HOMEBREW_PREFIX" ]]; then
+  for brew in /opt/homebrew/bin/brew /usr/local/bin/brew \
+    /home/linuxbrew/.linuxbrew/bin/brew "$HOME/.linuxbrew/bin/brew"; do
+    if [[ -x "$brew" ]]; then
+      eval "$("$brew" shellenv)"
+      break
+    fi
+  done
+  unset brew
+fi
+
+# User binaries take precedence over Homebrew
+typeset -U path fpath
+path=("$HOME/.local/bin" $path)

@@ -1,0 +1,5 @@
+# System profiles such as macOS path_helper move user paths behind system paths; restore them
+if [[ -n "$HOMEBREW_PREFIX" ]]; then
+  path=("$HOMEBREW_PREFIX/bin" "$HOMEBREW_PREFIX/sbin" $path)
+fi
+path=("$HOME/.local/bin" $path)

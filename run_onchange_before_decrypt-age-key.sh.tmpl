@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+key="$HOME/.config/chezmoi/key.txt"
+if [ ! -f "$key" ]; then
+  printf '%s\n' "[age] Decrypting identity..."
+  mkdir -p "$(dirname "$key")"
+  "{{ .chezmoi.executable }}" age decrypt --passphrase --output "$key" "{{ .chezmoi.sourceDir }}/key.txt.age"
+  chmod 600 "$key"
+  printf '%s\n' "[age] Identity ready."
+fi

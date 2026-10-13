@@ -1,0 +1,9 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /* Apply shared preferences while retaining machine-local settings. */ -}}
+{{- $local := dict -}}
+{{- if ne (trim (get .chezmoi "stdin")) "" -}}
+{{-   $local = fromToml .chezmoi.stdin -}}
+{{- end -}}
+{{- $shared := includeTemplate "codex-config.toml" . | fromToml -}}
+#:schema https://developers.openai.com/codex/config-schema.json
+{{ mergeOverwrite (deepCopy $local) $shared | toToml }}

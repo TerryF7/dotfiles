@@ -1,0 +1,58 @@
+[user]
+	name = Terry Feng
+	email = me@terryfeng.com
+
+[alias]
+	a = add
+	aa = add --all
+	br = branch -vv
+	bra = branch -vv --all
+	ca = commit --amend
+	cm = commit -m
+	co = checkout
+	di = diff
+	f = fetch --tags --prune
+	fa = fetch --all --tags --prune
+	lg = log -p
+	pl = pull
+	ps = push
+	st = status -sb
+	sw = switch
+
+[core]
+	editor = nvim
+
+[init]
+	defaultBranch = main
+
+[fetch]
+	prune = true
+
+[diff]
+	algorithm = histogram
+	mnemonicPrefix = true
+	tool = nvimdiff
+
+[merge]
+	conflictStyle = zdiff3
+	defaultToUpstream = true
+	tool = nvimdiff
+
+[grep]
+	lineNumber = true
+
+[help]
+	autoCorrect = prompt
+
+[pull]
+	ff = only
+
+[push]
+	autoSetupRemote = true
+	default = upstream
+
+[rebase]
+	autoStash = true
+
+[rerere]
+	enabled = true

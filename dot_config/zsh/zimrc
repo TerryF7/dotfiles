@@ -1,0 +1,11 @@
+# Oh My Zsh
+zmodule ohmyzsh/ohmyzsh --source lib/clipboard.zsh --source lib/history.zsh
+
+# Completion; fpath modules must come before completion
+zmodule zsh-users/zsh-completions --fpath src
+zmodule completion
+
+# Other plugins
+zmodule zsh-users/zsh-autosuggestions
+zmodule ael-code/zsh-colored-man-pages --source colored-man-pages.plugin.zsh
+zmodule zdharma-continuum/fast-syntax-highlighting --source fast-syntax-highlighting.plugin.zsh

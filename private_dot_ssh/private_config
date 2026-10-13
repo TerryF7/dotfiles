@@ -1,0 +1,10 @@
+# Allow non-Apple OpenSSH to skip the macOS Keychain option
+IgnoreUnknown UseKeychain
+
+# Host entries kept in encrypted files
+Include ~/.ssh/config.d/*
+
+Host *
+  ServerAliveInterval 120
+  UseKeychain yes
+  AddKeysToAgent yes

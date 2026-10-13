@@ -1,0 +1,8 @@
+{{- /* chezmoi:modify-template */ -}}
+{{- /* Apply shared preferences while retaining machine-local settings. */ -}}
+{{- $local := dict -}}
+{{- if ne (trim (get .chezmoi "stdin")) "" -}}
+{{-   $local = fromJson .chezmoi.stdin -}}
+{{- end -}}
+{{- $shared := includeTemplate "claude-settings.json" . | fromJson -}}
+{{ mergeOverwrite (deepCopy $local) $shared | toPrettyJson "  " }}

@@ -1,0 +1,2 @@
+-- LazyVim
+require("config.lazy")

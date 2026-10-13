@@ -1,0 +1,32 @@
+# Zsh configuration
+export ZSH="$HOME/.config/zsh"
+
+# Zim
+ZIM_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zim"
+ZIM_CONFIG_FILE="$ZSH/zimrc"
+if [[ ! "$ZIM_HOME/init.zsh" -nt "$ZIM_CONFIG_FILE" ]]; then
+  source "$HOMEBREW_PREFIX/opt/zimfw/share/zimfw.zsh" init
+fi
+source "$ZIM_HOME/init.zsh"
+
+# Aliases
+[[ -f $ZSH/aliases.zsh ]] && source $ZSH/aliases.zsh
+
+# Keybindings
+bindkey -e
+
+# zoxide
+if command -v zoxide > /dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+
+# fzf
+[[ -f "$ZSH/fzf.zsh" ]] && source "$ZSH/fzf.zsh"
+
+# Ghostty
+if [[ -n "$GHOSTTY_RESOURCES_DIR" && -r "$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-integration" ]]; then
+  source "$GHOSTTY_RESOURCES_DIR/shell-integration/zsh/ghostty-integration"
+fi
+
+# Starship
+eval "$(starship init zsh)"

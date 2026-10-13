@@ -1,0 +1,27 @@
+# Vim swap files
+.*.sw[a-p]
+.sw[a-p]
+
+# Backup and Office lock files
+*~
+~$*
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+# Icon must end with two \r
+Icon
+
+# Windows
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory
+.fuse_hidden*
+.nfs*
+.Trash-*
